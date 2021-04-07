@@ -1,0 +1,176 @@
+:root {
+  --header-height: calc(2em + 2rem);
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+  background-color: rgb(240, 240, 240);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: royalblue;
+}
+
+.app {
+  display: flex;
+  min-height: calc(100vh - var(--header-height));
+  margin: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .app {
+    display: block;
+  }
+}
+
+
+header {
+  padding: 1rem 2rem;
+  background-color: rgb(41, 41, 41);
+  color: white;
+  box-shadow: 0 0 10px grey;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+.config {
+  width: 200px;
+  padding: 1.5rem;
+  background-color: rgb(240, 240, 240);
+  border: 1px solid lightgrey;
+}
+
+@media screen and (max-width: 800px) {
+  .config {
+    width: inherit;
+    text-align: center;
+    margin: auto;
+  }
+}
+
+.config label {
+  display: block;
+  font-size: 0.5rem;
+}
+
+.config input {
+  width: 200px;
+  height: 1.5rem;
+  text-align: right;
+  border: none;
+  border-bottom: 1px solid rgb(71, 71, 71);
+}
+
+.button {
+  display: block;
+  margin: 1rem auto 0;
+  padding: 0.2rem;
+  width: 200px;
+  background-color: grey;
+  border: 1px solid black;
+  color: white;
+  transition: 200ms;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: royalblue;
+}
+
+.button-about-wrapper {
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+.button-about {
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  border: 1px solid black;
+  transition: 200ms;
+}
+
+.button-about:hover {
+  cursor: pointer;
+  background-color: royalblue;
+  color: white;
+}
+
+.result {
+  flex-grow: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  justify-items: center;
+  justify-content: center;
+  row-gap: 2rem;
+  padding: 2rem 0 3rem;
+  font-size: 0.8rem;
+}
+
+.result div {
+  width: fit-content;
+}
+
+tr, td {
+  padding: 0.5rem 1rem;
+  border: 1px solid lightgrey;
+}
+
+.modal-overlay {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-wrap {
+  width: 80%;
+  max-width: 800px;
+  padding: 3rem;
+  background-color: white;
+  box-shadow: 0 0 2rem rgb(40, 40, 40);
+}
+
+.modal-wrap h2 {
+  margin: 0 0 1rem;
+}
+
+.modal-body {
+  width: max-content;
+  margin: auto;
+}
+
+.modal-wrap p {
+  margin: auto;
+}
+
+.loading {
+  width: 0.7rem;
+  height: 0.7rem;
+  margin: auto;
+  border-radius: 100%;
+  border: 3px solid black;
+  border-bottom-color: white;
+  animation: rotate 500ms ease-in-out 100ms infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
