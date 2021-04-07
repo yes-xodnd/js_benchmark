@@ -14,6 +14,8 @@ export default function App() {
                ? new Worker('../worker.js', { type: 'module'})
                : null;
 
+  console.log(worker ? 'worker detected' : 'no worker');
+
   // elements
   const root = document.querySelector('.app');
   const inputL = root.querySelector('#input-length');
