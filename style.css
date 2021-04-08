@@ -153,7 +153,10 @@ tr, td {
 
 .modal-body {
   width: max-content;
+  max-width: 100%;
   margin: auto;
+  word-wrap: break-word;
+  line-height: 1.6rem;
 }
 
 .modal-wrap p {
