@@ -8,11 +8,12 @@ const WORKER_URL = (location.hostname.includes('github'))
                  ? 'https://yes-xodnd.github.io/js_benchmark/worker.js'
                  : '../worker.js';
 
-const worker = (window.Worker)
-                 ? new Worker(WORKER_URL, { type: 'module' })
-                 : null;
 
 export default function App() {
+
+  // init worker
+  const worker = new Worker(WORKER_URL);
+  worker.onmessage = messageHandler;
 
   // elements
   const root = document.querySelector('.app');
@@ -23,8 +24,10 @@ export default function App() {
   const buttonClear = root.querySelector('.button-clear');
   const loading = `<div class="loading"></div>`;
 
+  // state
   let isLoading = false;
   
+  // 
   inputL.addEventListener('keyup', onEvent);
   inputN.addEventListener('keyup', onEvent);
   buttonTest.addEventListener('click', onEvent);
@@ -50,41 +53,28 @@ export default function App() {
     }
 
     if (isLoading) {
-      if (worker) {
-        worker.terminate();
-        restoreButton();
-        alert('테스트가 취소되었습니다.');
-        return;
-
-      } else {
-        alert('결과를 계산하는 중입니다.');
-        return;
-      }
+      worker.terminate();
+      isLoading = false;
+      buttonTest.innerHTML = 'TEST';
+      alert('테스트가 취소되었습니다.');
+      return;
     }
 
+    // initTest
     isLoading = true;
     buttonTest.innerHTML = loading;
+    worker.postMessage({ L, N });
+  }
 
-    if (worker) {
-      worker.postMessage({ L, N });
-      worker.onmessage = ({ data }) => {
-        pipe(
-          partial(createTestResultItem, '_', L, N),
-          appendResultItem
-        )(data);
-        
-        restoreButton();
-      }
-
-    } else {
-      pipe(
-        test,
-        partial(createTestResultItem, '_', L, N),
-        appendResultItem
-      )({ fns, L, N });
-
-      restoreButton();
-    }
+  function messageHandler({ data }) {
+    const { result, L, N } = data;
+    pipe(
+      partial(createTestResultItem, '_', L, N),
+      appendResultItem
+    )(result);
+    
+    isLoading = false;
+    buttonTest.innerHTML = 'TEST';
   }
 
   function appendResultItem(item) {
@@ -93,10 +83,5 @@ export default function App() {
 
   function clearResult() {
     result.innerHTML = null;
-  }
-
-  function restoreButton() {
-    isLoading = false;
-    buttonTest.innerHTML = 'TEST';
   }
 }
