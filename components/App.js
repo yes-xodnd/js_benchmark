@@ -3,7 +3,15 @@ import fns from '../lib/iteration.js';
 import pipe from '../lib/pipe.js';
 import partial from '../lib/partial.js';
 import createTestResultItem from '../lib/table.js';
-import worker from '../lib/webWorker.js';
+
+const WORKER_URL = (location.hostname.includes('github'))
+                 ? 'https://yes-xodnd.github.io/js_benchmark/worker.js'
+                 : '../worker.js';
+
+const worker = (window.Worker)
+                 ? new Worker(WORKER_URL, { type: 'module' })
+                 : null;
+
 
 export default function App() {
 
