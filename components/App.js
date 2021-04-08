@@ -12,7 +12,6 @@ const worker = (window.Worker)
                  ? new Worker(WORKER_URL, { type: 'module' })
                  : null;
 
-
 export default function App() {
 
   // elements
@@ -51,8 +50,16 @@ export default function App() {
     }
 
     if (isLoading) {
-      alert('결과를 계산하는 중입니다.');
-      return;
+      if (worker) {
+        worker.terminate();
+        restoreButton();
+        alert('계산이 취소되었습니다.');
+        return;
+
+      } else {
+        alert('결과를 계산하는 중입니다.');
+        return;
+      }
     }
 
     isLoading = true;
@@ -65,9 +72,8 @@ export default function App() {
           partial(createTestResultItem, '_', L, N),
           appendResultItem
         )(data);
-
-        isLoading = false;
-        buttonTest.innerHTML = 'TEST';
+        
+        restoreButton();
       }
 
     } else {
@@ -77,8 +83,7 @@ export default function App() {
         appendResultItem
       )({ fns, L, N });
 
-      isLoading = false;
-      buttonTest.innerHTML = 'TEST';
+      restoreButton();
     }
   }
 
@@ -88,5 +93,10 @@ export default function App() {
 
   function clearResult() {
     result.innerHTML = null;
+  }
+
+  function restoreButton() {
+    isLoading = false;
+    buttonTest.innerHTML = 'TEST';
   }
 }
