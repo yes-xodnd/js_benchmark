@@ -17,13 +17,8 @@ const modalTemplate = () => `
         <p>
           각 함수는 <a href="https://github.com/yes-xodnd/js_benchmark">이곳</a>
           에서 확인할 수 있습니다.<br>          
-          실행 환경에 따라 속도가 달라질 수 있습니다.<br>
-          ${
-            window.Worker
-            ? '테스트는 Worker 스레드에서 시행됩니다.'
-            : '테스트는 메인 스레드에서 시행됩니다.'
-          }<br>
-          iOS 환경에서 실행되지 않을 수 있습니다.
+          기기, 브라우저 등 실행 환경에 따라 속도가 달라질 수 있습니다.<br>
+          '테스트는 Worker 스레드에서 시행됩니다.'
         </p>
       </div>
     </div>
