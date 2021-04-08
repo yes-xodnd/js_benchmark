@@ -40,13 +40,13 @@ export default function App() {
       return;
     }
 
-    if (L < 100) {
-      alert('L: 100 이상의 숫자를 입력할 수 있습니다.');
+    if (L < 1) {
+      alert('L: 1보다 큰 숫자를 입력해주세요.');
       return;
     }
     
     if (N < 1 || N > 10000) {
-      alert('N: 1이상, 10000이하의 숫자를 입력할 수 있습니다.');
+      alert('N: 1이상, 10000 이하의 숫자를 입력해주세요.');
       return;
     }
 
