@@ -1,5 +1,3 @@
-import test from '../lib/test.js';
-import fns from '../lib/iteration.js';
 import pipe from '../lib/pipe.js';
 import partial from '../lib/partial.js';
 import createTestResultItem from '../lib/table.js';

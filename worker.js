@@ -102,8 +102,7 @@ function addMultiplier(arr) {
 
 function getTestResult(fn, L, N) {
   const name = fn.name;
-  const _time = measurePerfTimeMean(fn, L, N);
-  const time = (_time * 1000).toFixed(2);
+  const time = measurePerfTimeMean(fn, L, N).toFixed(3);
   return { name, time }
 }
 
