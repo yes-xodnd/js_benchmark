@@ -44,8 +44,8 @@ export default function App() {
       return;
     }
     
-    if (N < 1 || N > 1000) {
-      alert('N: 1이상, 1000이하의 숫자를 입력할 수 있습니다.');
+    if (N < 1 || N > 10000) {
+      alert('N: 1이상, 10000이하의 숫자를 입력할 수 있습니다.');
       return;
     }
 
@@ -53,7 +53,7 @@ export default function App() {
       if (worker) {
         worker.terminate();
         restoreButton();
-        alert('계산이 취소되었습니다.');
+        alert('테스트가 취소되었습니다.');
         return;
 
       } else {
