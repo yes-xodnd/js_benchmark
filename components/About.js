@@ -1,7 +1,7 @@
-const modalTemplate = `
+const modalTemplate = () => `
   <div class="modal-overlay">
     <div class="modal-wrap">
-      <div class="modal-body">
+    <div class="modal-body">
         <h2>About</h2>
         <p>
           테스트는 각 반복문 함수를 이용해 배열 요소들의 합(sum)을 구하는 시간을 비교합니다. <br>
@@ -13,8 +13,17 @@ const modalTemplate = `
           <li>N : 각 함수별 시행횟수. 결과는 N번 시행의 평균 시간을 출력합니다.</li>
           <li>M : 최소 시간 대비 배수</li>
         </ul>
-        각 함수는 <a href="https://github.com/yes-xodnd/js_benchmark">이곳</a>
-        에서 확인할 수 있습니다.<br>
+
+        <p>
+          각 함수는 <a href="https://github.com/yes-xodnd/js_benchmark">이곳</a>
+          에서 확인할 수 있습니다.<br>          
+          실행 환경에 따라 속도가 달라질 수 있습니다.<br>
+          ${
+            window.Worker
+            ? '테스트는 Worker 스레드에서 시행됩니다.'
+            : '테스트는 메인 스레드에서 시행됩니다.'
+          }
+        </p>
       </div>
     </div>
   </div>
@@ -24,7 +33,7 @@ const modalTemplate = `
 export default function About() {
   const root = document.querySelector('.app');
   const about = root.querySelector('.button-about');
-  const modalFragment = createModalFragment(modalTemplate);
+  const modalFragment = createModalFragment(modalTemplate());
   const overlay = modalFragment.querySelector('.modal-overlay');
   
   overlay.addEventListener('click', onClickOverlay);
