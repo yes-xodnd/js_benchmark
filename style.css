@@ -19,6 +19,7 @@ body::-webkit-scrollbar-thumb {
 .app {
   display: flex;
   min-height: calc(100vh - var(--header-height));
+  /* height: max-content; */
   margin: auto;
 }
 
