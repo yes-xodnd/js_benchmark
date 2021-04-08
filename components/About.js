@@ -13,6 +13,8 @@ const modalTemplate = `
           <li>N : 각 함수별 시행횟수. 결과는 N번 시행의 평균 시간을 출력합니다.</li>
           <li>M : 최소 시간 대비 배수</li>
         </ul>
+        각 함수는 <a href="https://github.com/yes-xodnd/js_benchmark">이곳</a>
+        에서 확인할 수 있습니다.<br>
       </div>
     </div>
   </div>
