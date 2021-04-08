@@ -22,7 +22,7 @@ const modalTemplate = () => `
             window.Worker
             ? '테스트는 Worker 스레드에서 시행됩니다.'
             : '테스트는 메인 스레드에서 시행됩니다.'
-          }
+          }<br>
           iOS 환경에서 실행되지 않을 수 있습니다.
         </p>
       </div>
