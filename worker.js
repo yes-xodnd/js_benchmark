@@ -3,7 +3,7 @@ import test from './lib/test.js';
 
 onmessage = ({ data }) => {
   const { L, N } = data;
-  console.log('worker engaged: ', fns, L, N);
+  console.log('worker engaged');
   const result = test({ fns, L, N });
   postMessage(result);
 };

@@ -3,12 +3,9 @@ import fns from '../lib/iteration.js';
 import pipe from '../lib/pipe.js';
 import partial from '../lib/partial.js';
 import createTestResultItem from '../lib/table.js';
-import worker from '../lib/WebWorker.js';
+import worker from '../lib/webWorker.js';
 
 export default function App() {
-  
-  // load functions on memory
-  test({ fns, L: 1, N: 1 });
 
   // elements
   const root = document.querySelector('.app');
